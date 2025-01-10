@@ -28,4 +28,8 @@ public interface EmployeeMapper {
             "values " +
             "(#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})")
     void insert(Employee employee);
+    /**
+     * 根据主键动态修改属性
+     */
+    void update(Employee employee);
 }

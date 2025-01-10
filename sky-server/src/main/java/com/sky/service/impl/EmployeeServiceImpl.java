@@ -112,4 +112,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
     }
 
+    /*
+    * 启用禁用员工账号
+    * @param status
+    * @param id
+    * */
+    public void startOrStop(Integer status, Long id){
+        //把对象封装进去,这是两种方法。
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+
+//        Employee employee = new Employee();
+//        employee.setStatus(status);
+//        employee.setId(id);
+        //写一个动态的sql，update employee set status = ? where id = ?
+        employeeMapper.update(employee);
+
+    }
+
 }
