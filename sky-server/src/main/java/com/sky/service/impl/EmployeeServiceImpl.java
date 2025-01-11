@@ -132,4 +132,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    public Employee getById(Long id){
+        Employee employee =employeeMapper.getById(id);
+        employee.setPassword("****");//进一步加强安全性，这样传入给前端的就是4个*
+        return employee;
+    }
+
+    /*
+    * 根据id修改员工信息
+     */
+    public void update(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());//底层是通过threadLocal进行获取。
+
+        employeeMapper.update(employee);
+
+    }
+
 }
